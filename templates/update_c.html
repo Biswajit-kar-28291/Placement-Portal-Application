@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-6 mt-5 ">
+
+        <form class="border border-black rounded-5 p-3 shadow bg-body-secondary" action="/update_drive_c/{{this_drive.id}}"
+          method="post">
+          <h1 class="text-center">Create Drive</h1>
+          <div class="container">
+            <div class="mb-3">
+              <label class="form-label mb-2 text-body-secondary">Drive Name</label>
+              <input type="drivename" class="form-control border-black" id="drivename" name="name" value="{{this_drive.name}}" disabled />
+            </div>
+            <div class="mb-3">
+              <label class="form-label mb-2 text-body-secondary">Job Title</label>
+              <input type="jobtitle" class="form-control border-black" id="jobtitle" name="jt" value="{{this_drive.job_title}}"/>
+            </div>
+
+
+            <div class="mb-3">
+              <label class="form-label mb-2 text-body-secondary">Job Description</label>
+              <textarea class="form-control border-black" id="floatingTextarea2" style="height: 100px" name="jd">{{this_drive.job_description}}</textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label mb-2 text-body-secondary">Eligibility Criteria</label>
+              <input type="ec" class="form-control border-black" id="ec" name="ec" value="{{this_drive.eligible_criteria}}" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label mb-2 text-body-secondary">Salary</label>
+              <input type="salary" class="form-control border-black" id="salary" name="salary" value="{{this_drive.salary}}"/>
+            </div>
+            <div class="mb-3">
+              <label class="form-label mb-2 text-body-secondary">Location</label>
+              <input type="location" class="form-control border-black" id="location" name="location" value="{{this_drive.location}}" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label mb-2 text-body-secondary">Application Deadline</label>
+              <input type="ad" class="form-control border-black" id="ad" name="ad" value="{{this_drive.application_deadline}}" />
+            </div>
+            <div class="text-center">
+              <input type="submit" class="btn btn-outline-success m-auto" value="update">
+            </div>
+
+
+
+
+          </div>
+        </form>
+      </div>
+      <div class="col"></div>
+    </div>
+  </div>
+</body>
+
+</html>

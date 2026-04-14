@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-6 mt-5">
+
+      <form class="border border-black rounded-5 p-3 shadow bg-body-secondary" action="/register" method="post"  enctype="multipart/form-data">
+        <h1 class="text-center">Register</h1>
+        <div class="container">
+          <div class="mb-3">
+            <label class="form-label mb-2 text-body-secondary">Username</label>
+            <input type="text" class="form-control border-black" id="username" name="username" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label mb-2 text-body-secondary">Email</label>
+            <input type="email" class="form-control border-black" id="email" name="email" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label mb-2 text-body-secondary">Register as</label>
+            <div class="form-check form-check-inline text-body-secondary">
+
+              <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="student" required>
+              <label class="form-check-label" for="inlineRadio1">Student</label>
+            </div>
+            <div class="form-check form-check-inline text-body-secondary">
+              <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="company">
+              <label class="form-check-label" for="inlineRadio2">Company</label>
+            </div>
+          </div>
+
+          <div class="mb-3">
+  <label class="form-label mb-2 text-body-secondary">
+    Upload Resume (PDF Only - Student)
+  </label>
+  <input type="file"
+         class="form-control border-black"
+         name="resume"
+         accept=".pdf">
+</div>
+
+          <div class="mb-3">
+            <label class="form-label mb-2 text-body-secondary">Department (Student Only)</label>
+            <input type="text" class="form-control border-black" id="department" name="department" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label mb-2 text-body-secondary">HR Contact (Company Only)</label>
+            <input type="text" class="form-control border-black" id="hr" name="hr" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label mb-2 text-body-secondary">Website (Company Only)</label>
+            <input type="url" class="form-control border-black" id="website" name="website" />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label mb-2 text-body-secondary">Password</label>
+            <input type="password" class="form-control border-black" id="exampleInputPassword1" name="password"
+              required />
+          </div>
+
+          <div class="text-center">
+            <input type="submit" class="btn btn-primary m-auto" value="Register">
+          </div>
+
+          <p class="text-center mt-2">Already have an account?<a href="/login"
+              class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Login</a></p>
+        </div>
+      </form>
+    </div>
+    <div class="col"></div>
+  </div>
+</body>
+
+</html>

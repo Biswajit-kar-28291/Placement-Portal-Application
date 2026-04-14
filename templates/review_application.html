@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container mt-4">
+    <div class="card mb-3 shadow-sm position-absolute top-50 start-50 translate-middle">
+      <div class="row g-0">
+
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title mb-3">Student Application</h5>
+            <p class="card-title mb-3">Student Name:{{application.student.name}}</p>
+            <p class="card-title mb-3"> Department: {{application.student.department}}</p>
+            <p class="card-title mb-3"> Drive: {{application.drive.name}}</p>
+            <p class="card-title mb-3"> Job Title: {{application.drive.job_title}}</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <img src="https://thumbs.dreamstime.com/b/student-icon-vector-graduation-mortar-board-school-college-university-glyph-pictogram-male-person-profile-avatar-108392101.jpg" class="img-fluid rounded-start" alt="...">
+        </div>
+
+        <div class=" d-flex gap-5 m-4">
+
+         <a href="{{ url_for('view_resume', filename=application.student.resume) }}" class="btn btn-outline-info" target="_blank">
+    View Resume
+</a>
+          <form action="/action/{{application.id}}" method="post">
+            <select name="status" class="form-select form-select-sm border-info text-info">
+              <option value="Applied" {% if application.status=="Applied" %}selected{% endif %}>Applied</option>
+              <option value="Shortlist" {% if application.status=="Shortlist" %}selected{% endif %}>Shortlist</option>
+              <option value="Waiting" {% if application.status=="Waiting" %}selected{% endif %}>Waiting</option>
+              <option value="Selected" {% if application.status=="Selected" %}selected{% endif %}>Selected</option>
+              <option value="Reject" {% if application.status=="Reject" %}selected{% endif %}>Reject</option>
+            </select>
+        </div>
+        <div class="col d-flex justify-content-end">
+          <input type="submit" class="btn btn-outline-primary m-5" value="back">
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+
+<body>
+  <div class="row">
+    <div class="col"></div>
+
+    <div class="col-6 mt-5">
+      <form class="border border-black rounded-5 p-3 shadow bg-body-secondary"
+            action="/edit_profile/{{this_user.id}}"
+            method="POST"
+            enctype="multipart/form-data">
+
+        <h1 class="text-center">Edit Profile</h1>
+
+        <div class="container">
+
+          <div class="mb-3">
+            <label class="form-label text-body-secondary">Username</label>
+            <input type="text" class="form-control border-black"
+                   value="{{this_user.name}}" disabled>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label text-body-secondary">Email</label>
+            <input type="email" class="form-control border-black"
+                   value="{{this_user.email}}" disabled>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label text-body-secondary">Department</label>
+            <input type="text" class="form-control border-black"
+                   name="department"
+                   value="{{this_user.department}}">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label text-body-secondary">Update Resume (PDF)</label>
+            <input type="file" class="form-control border-black"
+                   name="resume">
+          </div>
+
+          {% if this_user.resume %}
+          <div class="mb-3">
+            <a href="{{ url_for('view_resume', filename=this_user.resume) }}"
+               target="_blank"
+               class="btn btn-success">
+               View Current Resume
+            </a>
+          </div>
+          {% endif %}
+
+          <div class="text-center mt-3">
+            <input type="submit" class="btn btn-primary" value="Update">
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+    <div class="col"></div>
+  </div>
+</body>
+</html>

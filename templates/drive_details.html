@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container mt-4">
+    <div class="card mb-3 shadow-sm position-absolute top-50 start-50 translate-middle">
+      <div class="row g-0">
+
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{drive.name}}</h5>
+            <p class="card-title">Job Title</p>
+
+            <p class="card-text text-body-secondary">{{drive.job_title}}</p>
+            <p class="card-title"> job description</p>
+
+            <p class="card-text text-body-secondary">{{drive.job_description}}</p>
+            <p class="card-title"> Salary</p>
+
+            <p class="card-text text-body-secondary">{{drive.salary}}</p>
+            <p class="card-title"> Location</p>
+
+            <p class="card-text text-body-secondary">{{drive.location}}</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <img src="https://i.pinimg.com/736x/89/a1/17/89a1177e7e1f988eb92878d39c95175e.jpg" class="img-fluid rounded-start mt-2" alt="...">
+        </div>
+
+        <div class=" d-flex align-items-center justify-content-center gap-5 m-4">
+          <a href="/apply/{{student.id}}/{{drive.id}}" class="btn btn-outline-info">Apply</a>
+
+          <a href="/view_details/{{student.id}}/{{drive.company.id}}" class="btn btn-outline-info">Go Back</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

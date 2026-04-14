@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand">Walcome {{user.username}}</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <form class="d-flex" role="search" action="/search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword" />
+          <select class="form-select form-select-sm border-info text-info me-2" name="key">
+            <option value="company_n">Company Name</option>
+            <option value="company_e">Company Email</option>
+            <option value="company_i">Company Id</option>
+            <option value="student_n">Student Name</option>
+            <option value="student_e">Student Email</option>
+            <option value="student_i">Student Id</option>
+            <option value="drive">Drive Name</option>
+          </select>
+          <input class="btn btn-outline-success" type="submit">
+
+        </form>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/login">logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row mt-3 text-center">
+  <div class="col-sm-3 mb-3 mb-sm-0">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Total Companies.</h5>
+        <p class="card-text">{{ company|length }}</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-sm-3 mb-3 mb-sm-0">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Total Students.</h5>
+        <p class="card-text">{{ student|length }}</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Total Drives.</h5>
+        <p class="card-text">{{ drive|length }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Total Application.</h5>
+        <p class="card-text">{{ application|length }}</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+    <div>
+      <h4 class="mt-4 mb-2">Registerd Companies</h4>
+
+      <ol class="list-group border border-dark ps-3 pe-3 pb-2">
+
+        {% for company in company%}
+        {% if company.approval_status=="approve"%}
+        <li
+          class="list-group-item mt-2 d-flex justify-content-between align-items-start border border-dark-subtle rounded">
+          <div class="ms-2 my-auto">
+            <h6 class="text-body-secondary">{{company.name}}</h6>
+          </div>
+          <a href="/blacklist_copany/{{company.id}}" class="btn btn-outline-danger">blacklist</a>
+        </li>
+
+
+
+        {% endif %}
+        {% endfor %}
+      </ol>
+
+    </div>
+
+    <div>
+      <h4 class="mt-4 mb-2">Registerd Students</h4>
+
+      <ol class="list-group border border-dark ps-3 pe-3 pb-2">
+        {% for student in student%}
+
+        {% if student.approval_status=="approve"%}
+        <li
+          class="list-group-item mt-2 d-flex justify-content-between align-items-start border border-dark-subtle rounded">
+          <div class="ms-2 my-auto">
+            <h6 class="text-body-secondary">{{student.name}}</h6>
+          </div>
+          <a href="/blacklist_student/{{student.id}}" class="btn btn-outline-danger">blacklist</a>
+        </li>
+
+        {% endif %}
+        {% endfor %}
+      </ol>
+
+    </div>
+
+    <div>
+      <h4 class="mt-4 mb-2">Company application</h4>
+      <ol class="list-group border border-dark ps-3 pe-3 pb-2">
+        {% for company in company%}
+        {% if company.approval_status=="pending" or company.approval_status=="blacklist" %}
+        <li
+          class="list-group-item mt-2 d-flex justify-content-between align-items-start border border-dark-subtle rounded">
+          <div class="ms-2 my-auto">
+            <h6 class="text-body-secondary">{{company.name}}</h6>
+          </div>
+          <a href="/approve/{{company.id}}" class="btn btn-outline-success">approve</a>
+        </li>
+
+
+        {% endif %}
+        {% endfor %}
+      </ol>
+
+    </div>
+    <div>
+      <h4 class="mt-4 mb-2">Students Blacklist</h4>
+      <ol class="list-group border border-dark ps-3 pe-3 pb-2">
+        {% for student in student%}
+        {% if student.approval_status=="blacklist"%}
+        <li
+          class="list-group-item mt-2 d-flex justify-content-between align-items-start border border-dark-subtle rounded">
+          <div class="ms-2 my-auto">
+            <h6 class="text-body-secondary">{{student.name}}</h6>
+          </div>
+          <a href="/s_approve/{{student.id}}" class="btn btn-outline-success">approve</a>
+        </li>
+
+
+        {% endif %}
+        {% endfor %}
+      </ol>
+
+    </div>
+
+    <div>
+
+      <div class="mt-4 mb-2">
+        <h4 class="mt-4 mb-2">Ongoing Drives</h4>
+
+
+      </div>
+
+      <div class="border border-dark rounded pt-1 ps-3 pe-2">
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Sr No.</th>
+              <th scope="col">Drive Name</th>
+              <th scope="col" class="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {% for drive in drive %}
+            {% if drive.status=="ongoing" %}
+            <tr>
+              <th scope="row">{{drive.id}}</th>
+              <td>{{drive.name}}</td>
+              <td class="text-center"><a href="/admin_drive_view_details/{{drive.id}}"
+                  class="btn btn-outline-info">view details</a>
+                <a href="/complete_a/{{drive.id}}" class="btn btn-outline-success">mark as complete</a>
+              </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div>
+
+      <div class="mt-4 mb-2">
+        <h4 class="mt-4 mb-2">Closed Drives</h4>
+
+
+      </div>
+
+      <div class="border border-dark rounded pt-1 ps-3 pe-2">
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Sr No.</th>
+              <th scope="col">Drive Name</th>
+              <th scope="col" class="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {% for drive in drive %}
+            {% if drive.status=="complete" %}
+            <tr>
+              <th scope="row">{{drive.id}}</th>
+              <td>{{drive.name}}</td>
+              <td class="text-center"><a href="#"
+                  class="btn btn-secondary-info disabled" style="pointer-events: none;">update</a>
+              </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <div>
+
+      <h4 class="mt-4 mb-2">Studetns application
+      </h4>
+
+      <div class="border border-dark rounded pt-1 ps-3 pe-2">
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Sr No.</th>
+              <th scope="col">Drive Name</th>
+              <th scope="col">Student Name</th>
+              <th scope="col">Company</th>
+              <th scope="col">Date</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for application in application %}
+            <tr>
+              <th scope="row">{{application.id}}</th>
+              <td>{{application.drive.name}}</td>
+              <td>{{application.student.name}}</td>
+              <td>{{application.drive.company.name}}</td>
+              <td>{{application.application_date}}</td>
+              <td><a href="/admin_view/{{application.id}}" class="btn btn-outline-info">view details</a></td>
+            </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+
+
+  </div>
+</body>
+
+</html>
