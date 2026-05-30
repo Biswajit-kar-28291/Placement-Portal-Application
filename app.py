@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, redirect
 from application.database import db
 app=None
 
@@ -14,6 +14,9 @@ def create_app():
 
 
 app=create_app()
+@app.route('/')
+def home():
+    return redirect('/login')
 from application.controllers import *
 
 if __name__=='__main__':
